@@ -1,0 +1,13 @@
+{:paths ["src"]
+ 
+ :deps {org.clojure/clojure {:mvn/version "1.10.1"}}
+
+ :aliases {:jar {:replace-deps {com.github.seancorfield/depstar {:mvn/version "2.0.216"}}
+                 :exec-fn hf.depstar/jar
+                 :exec-args {:jar "new-lib-test.jar" :sync-pom true}}
+           :install {:replace-deps {slipset/deps-deploy {:mvn/version "0.1.5"}}
+                     :exec-fn deps-deploy.deps-deploy/deploy
+                     :exec-args {:installer :local :artifact "new-lib-test.jar"}}
+           :deploy {:replace-deps {slipset/deps-deploy {:mvn/version "0.1.5"}}
+                    :exec-fn deps-deploy.deps-deploy/deploy
+                    :exec-args {:installer :remote :artifact "new-lib-test.jar"}}}}
